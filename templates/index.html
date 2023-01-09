@@ -1,0 +1,37 @@
+{% extends 'bases.html' %}
+{% block body %}
+<div class="content">
+    
+    <h3 class="subtitle is-3" style="text-align: center;">Tasks for Today</h3>
+   
+    <div class="form" style="margin-bottom: 1rem; text-align: center">
+        <form action="/" method="POST">
+            <input class="input is-primary" type="text" placeholder="add the task" id="content" name="content">
+            <button class="button is-info">Add Task!</button>
+
+        </form>
+    </div>    
+    <table>
+       {%if tasks | length < 1 %}
+        <h6 style="color: green" class="subtitle is-6" style="text-align: center">There are no remaining tasks for today, good job.</h6>
+       {% else %}
+       {%endif %}
+
+  {% for task in tasks%}
+        <tr style="margin-top: -2rem;">           
+        </tr>
+        <div class="columns" style="margin-top: -1rem; text-align: center">
+            <div class="column">
+                {{ task.content }}
+            </div>
+            <div class="column">
+                <a href="/delete/{{task.id}}">Delete | </a>
+        
+                <a href="/update/{{task.id}}">Update</a>
+              </div>
+   {%endfor%}     
+    </table>   
+    
+
+</div>
+ {% endblock %}
