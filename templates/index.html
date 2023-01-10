@@ -2,12 +2,13 @@
 {% block body %}
 <div class="content">
     
-    <h3 class="subtitle is-3" style="text-align: center;">Tasks for Today</h3>
+    <h3 class="subtitle is-3" style="text-align: center;">Tasks for {{date}}</h3>
    
     <div class="form" style="margin-bottom: 1rem; text-align: center">
         <form action="/" method="POST">
             <input class="input is-primary" type="text" placeholder="add the task" id="content" name="content">
             <button class="button is-info">Add Task!</button>
+            <button class="button is-danger" ><a href="{{url_for('logout')}}" style="color: white;">LOGOUT</a></button>
 
         </form>
     </div>    
@@ -18,7 +19,38 @@
        {%endif %}
 
   {% for task in tasks%}
-        <tr style="margin-top: -2rem;">           
+  <div class="card">
+    <div class="card-content">
+      <div class="content" style="width: 99%; word-break: break-all; white-space: normal;">
+       {{task.content}}
+      </div>
+    </div>
+    <footer class="card-footer" style="margin-bottom: 1rem;">
+      <a href="/update/{{task.id}}" class="card-footer-item" style="color: blue;" >Edit</a>
+      <a href="/delete/{{task.id}}" class="card-footer-item" style="color: red;">Delete</a>
+    </footer>
+  </div>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- <tr style="margin-top: -2rem;">           
         </tr>
         <div class="columns" style="margin-top: -1rem; text-align: center">
             <div class="column">
@@ -28,7 +60,7 @@
                 <a href="/delete/{{task.id}}">Delete | </a>
         
                 <a href="/update/{{task.id}}">Update</a>
-              </div>
+              </div> -->
    {%endfor%}     
     </table>   
     
